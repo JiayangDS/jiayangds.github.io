@@ -24,10 +24,6 @@ announcements:
   scrollable: true # adds a vertical scroll bar if there are more than 3 news items
   limit: 5 # leave blank to include all the news in the `_news` folder
 
-latest_posts:
-  enabled: flase
-  scrollable: true # adds a vertical scroll bar if there are more than 3 new posts items
-  limit: 3 # leave blank to include all the blog posts
 ---
 
 I am a PhD applicant seeking funded research positions for 2026/27. I graduated with Distinction from the **MSc Health Data Science** programme at the University of Manchester, where I conducted extended research on AI for medical imaging. My recent work on **leveraging 2D Vision Foundation Models for 3D cerebral aneurysm segmentation** resulted in a MICCAI 2026 submission (under review), supervised by Ali Sarrami Foroushani and Fengming Li.
