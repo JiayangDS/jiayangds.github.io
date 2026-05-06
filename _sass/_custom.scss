@@ -1,0 +1,22 @@
+/* ── Page titles (publications, projects, etc.) ── */
+.post-title,
+h1.post-title {
+  color: var(--global-theme-color);
+}
+
+/* ── Year labels (2020, 2021 etc.) ── */
+h2.year {
+  color: var(--global-theme-color) !important;
+}
+
+/* ── Section headings on project/about pages ── */
+h2 {
+  color: var(--global-theme-color);
+}
+
+/* ── Homepage tagline ── */
+.profile .address p,
+p.desc {
+  color: var(--global-theme-color);
+  font-weight: 500;
+}

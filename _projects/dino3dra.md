@@ -202,7 +202,7 @@ Four of five DINO variants fall *below* the plain U-Net baseline. Only the full 
 })();
 </script>
 <div class="caption">
-  <strong>Fig. 4.</strong> Interactive vessel confidence maps across ablation variants. Ground truth (semi-transparent blue), predictions (red; darker = higher confidence). Full DINO-3DRA produces homogeneous confidence across the aneurysm dome, recognising aneurysms as pathological vessel dilations rather than isolated anomalies.
+  <strong>Fig. 4.</strong> Interactive vessel confidence maps across ablation variants. Ground truth (semi-transparent blue), predictions (red; darker = higher confidence). Full DINO-3DRA produces homogeneous confidence across the aneurysm dome, recognising aneurysms as pathological vessel dilations rather than isolated anomalies. **It takes some time to load**
 </div>
 
 ---

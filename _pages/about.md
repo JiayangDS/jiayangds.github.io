@@ -4,10 +4,7 @@ title: home
 nav: false
 nav_order: 1
 permalink: /
-subtitle: >
-  MSc Health Data Science (UoM) | 
-  PhD Applicant | 
-  AI for Medical & Biological Applications
+subtitle: '<span style="color:var(--global-theme-color); font-weight:500;">MSc Health Data Science (UoM) | PhD Applicant | AI for Medical & Biological Applications</span>'
 
 profile:
   align: right
