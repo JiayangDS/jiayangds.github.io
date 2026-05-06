@@ -26,7 +26,7 @@ announcements:
 
 ---
 
-I am a PhD applicant seeking funded research positions for 2026/27. I graduated with Distinction from the **MSc Health Data Science** programme at the University of Manchester, where I conducted extended research on AI for medical imaging. My recent work on **leveraging 2D Vision Foundation Models for 3D cerebral aneurysm segmentation** resulted in a MICCAI 2026 submission (under review), supervised by Ali Sarrami Foroushani and Fengming Li.
+I am a PhD applicant seeking funded research positions for 27/28. I graduated with Distinction from the **MSc Health Data Science** programme at the University of Manchester, where I conducted extended research on AI for medical imaging. My recent work on **leveraging 2D Vision Foundation Models for 3D cerebral aneurysm segmentation** resulted in a MICCAI 2026 submission (under review), supervised by Ali Sarrami Foroushani and Fengming Li.
 
 My technical foundation spans **computer vision, LLMs, reinforcement learning, and multi-modal learning**, with practical experience in data engineering, cloud computing, and ML systems. My research interests centre on **AI for medical and biological applications** and **multi-modal learning**.
 
