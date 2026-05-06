@@ -281,7 +281,7 @@ display_categories: ["external-services"] # these categories will be displayed o
 
 scholar:
   last_name: [Lu]
-  first_name: [Jiayang]
+  first_name: [Jiayang, J.]
 
   style: apa
   locale: en

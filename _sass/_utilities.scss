@@ -603,3 +603,27 @@ figure.cover {
 mjx-container[jax="CHTML"][display="true"] {
   overflow-x: auto;
 }
+
+/* ── Homepage tagline ───────────────────── */
+.profile .address p,
+.profile p {
+  color: var(--global-theme-color);
+  font-weight: 500;
+}
+
+/* ── Page section titles (h2) ───────────── */
+h2 {
+  color: var(--global-theme-color);
+}
+
+/* ── Publication year/category group headers ── */
+.year,
+h2.year,
+.bibliography h2 {
+  color: var(--global-theme-color);
+}
+
+/* ── Projects page category titles ─────── */
+.category {
+  color: var(--global-theme-color);
+}

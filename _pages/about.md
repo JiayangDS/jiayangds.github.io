@@ -1,6 +1,8 @@
 ---
 layout: about
 title: home
+nav: true
+nav_order: 1
 permalink: /
 subtitle: >
   MSc Health Data Science (UoM) | 
