@@ -57,6 +57,8 @@
 
   .navbar-brand {
     color: var(--global-text-color);
+    visibility: visible !important;
+    opacity: 1 !important;
   }
 
   .navbar-nav .nav-item .nav-link {

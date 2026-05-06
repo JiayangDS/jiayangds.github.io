@@ -1,7 +1,7 @@
 ---
 layout: about
 title: home
-nav: true
+nav: false
 nav_order: 1
 permalink: /
 subtitle: >

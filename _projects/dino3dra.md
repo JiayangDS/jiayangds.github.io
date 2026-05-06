@@ -4,7 +4,7 @@ title: DINO-3DRA
 description: Leveraging 2D Foundation Model Semantics for 3D Cerebral Aneurysm Segmentation
 img: assets/img/dino3dra_preview.png
 importance: 1
-category: work
+category: research
 related_publications: false
 ---
 
@@ -118,27 +118,89 @@ F_fused = F_U + GELU(GN(W[F_U; GN(F_D)]))
 
 Four of five DINO variants fall *below* the plain U-Net baseline. Only the full pipeline — Room-Lite + Calibrated Fusion — surpasses it.
 
-| Configuration | Aneurysm Dice | HD95 (mm) | Δ vs Baseline |
-|:---|:---:|:---:|:---:|
-| **Ours (Full)** | **0.758 ± 0.234** | **2.75** | **+0.047** |
-| Baseline U-Net | 0.711 ± 0.240 | 4.20 | — |
-| Random Features | 0.628 ± 0.279 | 6.15 | −0.083 |
-| DINOv2-small | 0.590 ± 0.252 | 6.50 | −0.121 |
-| w/o Calibration | 0.492 ± 0.301 | 10.12 | −0.219 |
-| w/o Room-Lite | 0.385 ± 0.310 | 22.08 | −0.326 |
+<div class="table-responsive" style="text-align:center;">
+<table class="table table-sm" style="margin:0 auto;">
+  <thead>
+    <tr>
+      <th style="text-align:left;"></th>
+      <th colspan="2" style="text-align:center; border-bottom:1px solid #dee2e6;">Aneurysm</th>
+      <th colspan="2" style="text-align:center; border-bottom:1px solid #dee2e6;">Vessel</th>
+    </tr>
+    <tr>
+      <th style="text-align:left;">Configuration</th>
+      <th>Dice</th><th>HD95</th>
+      <th>Dice</th><th>HD95</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr style="font-weight:bold;">
+      <td style="text-align:left;">Ours (Full)</td>
+      <td>0.758 ± 0.234</td><td>2.75</td>
+      <td>0.897 ± 0.033</td><td>3.74</td>
+    </tr>
+    <tr>
+      <td style="text-align:left;">Baseline U-Net</td>
+      <td>0.711 ± 0.240</td><td>4.20</td>
+      <td>0.873 ± 0.046</td><td>5.41</td>
+    </tr>
+    <tr>
+      <td style="text-align:left;">Random Features</td>
+      <td>0.628 ± 0.279</td><td>6.15</td>
+      <td>0.885 ± 0.039</td><td>4.41</td>
+    </tr>
+    <tr>
+      <td style="text-align:left;">DINOv2-small</td>
+      <td>0.590 ± 0.252</td><td>6.50</td>
+      <td>0.868 ± 0.050</td><td>4.30</td>
+    </tr>
+    <tr>
+      <td style="text-align:left;">w/o Calibration</td>
+      <td>0.492 ± 0.301</td><td>10.12</td>
+      <td>0.857 ± 0.045</td><td>6.71</td>
+    </tr>
+    <tr>
+      <td style="text-align:left;">w/o Room-Lite</td>
+      <td>0.385 ± 0.310</td><td>22.08</td>
+      <td>0.857 ± 0.043</td><td>5.64</td>
+    </tr>
+  </tbody>
+</table>
+</div>
 
 <div class="row justify-content-center my-3">
   <div class="col-12">
-    <iframe
-      src="{{ '/assets/html/dino3dra_fig3.html' | relative_url }}"
-      width="100%"
-      height="600"
-      style="border:none;border-radius:8px;box-shadow:0 2px 8px rgba(0,0,0,0.12);"
-      loading="lazy"
-      title="Ablation Study Interactive Visualization">
-    </iframe>
+    <div id="fig3-wrapper" style="min-height:600px;display:flex;align-items:center;justify-content:center;background:var(--global-card-bg-color);border-radius:8px;box-shadow:0 2px 8px rgba(0,0,0,0.12);">
+      <div class="text-center text-muted">
+        <div class="spinner-border spinner-border-sm mb-2" role="status"></div>
+        <p class="mb-0" style="font-size:0.85rem;">Loading visualization…</p>
+      </div>
+    </div>
   </div>
 </div>
+
+<script>
+(function(){
+  var wrapper = document.getElementById('fig3-wrapper');
+  if (!wrapper) return;
+  var obs = new IntersectionObserver(function(entries){
+    entries.forEach(function(entry){
+      if(entry.isIntersecting){
+        var iframe = document.createElement('iframe');
+        iframe.src = "{{ '/assets/html/dino3dra_fig3.html' | relative_url }}";
+        iframe.width = '100%';
+        iframe.height = '600';
+        iframe.style.cssText = 'border:none;border-radius:8px;box-shadow:0 2px 8px rgba(0,0,0,0.12);';
+        iframe.title = 'Ablation Study Interactive Visualization';
+        iframe.onload = function(){ wrapper.style.minHeight = 'unset'; };
+        wrapper.innerHTML = '';
+        wrapper.appendChild(iframe);
+        obs.unobserve(wrapper);
+      }
+    });
+  }, { threshold: 0.1 });
+  obs.observe(wrapper);
+})();
+</script>
 <div class="caption">
   <strong>Fig. 4.</strong> Interactive vessel confidence maps across ablation variants. Ground truth (semi-transparent blue), predictions (red; darker = higher confidence). Full DINO-3DRA produces homogeneous confidence across the aneurysm dome, recognising aneurysms as pathological vessel dilations rather than isolated anomalies.
 </div>
@@ -164,12 +226,39 @@ Evaluated on two external datasets without fine-tuning. DINO-3DRA eliminates all
   </div>
 </div>
 
-| Dataset | Model | Dice | Jaccard | Vol. Sim. | HD95 | Failures |
-|:---|:---|:---:|:---:|:---:|:---:|:---:|
-| CADA | Baseline | 0.711 ± 0.186 | 0.577 ± 0.186 | 0.813 ± 0.128 | 5.16 | 11.1% |
-| CADA | **DINO-3DRA** | **0.739 ± 0.093** | **0.594 ± 0.118** | 0.807 ± 0.109 | **3.58** | **0%** |
-| SHINY-ICARUS | Baseline | 0.718 ± 0.147 | 0.574 ± 0.129 | 0.808 ± 0.089 | 15.52 | 3.3% |
-| SHINY-ICARUS | **DINO-3DRA** | **0.793 ± 0.049** | **0.660 ± 0.065** | 0.812 ± 0.056 | **3.76** | **0%** |
+<div class="table-responsive" style="text-align:center;">
+<table class="table table-sm" style="margin:0 auto;">
+  <thead>
+    <tr>
+      <th style="text-align:left;">Dataset</th>
+      <th style="text-align:left;">Model</th>
+      <th>Dice</th><th>Jaccard</th><th>Vol. Sim.</th><th>HD95</th><th>Failures</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align:left;">CADA</td>
+      <td style="text-align:left;">Baseline</td>
+      <td>0.711 ± 0.186</td><td>0.577 ± 0.186</td><td>0.813 ± 0.128</td><td>5.16</td><td>11.1%</td>
+    </tr>
+    <tr style="font-weight:bold;">
+      <td style="text-align:left;">CADA</td>
+      <td style="text-align:left;">DINO-3DRA</td>
+      <td>0.739 ± 0.093</td><td>0.594 ± 0.118</td><td>0.807 ± 0.109</td><td>3.58</td><td>0%</td>
+    </tr>
+    <tr>
+      <td style="text-align:left;">SHINY-ICARUS</td>
+      <td style="text-align:left;">Baseline</td>
+      <td>0.718 ± 0.147</td><td>0.574 ± 0.129</td><td>0.808 ± 0.089</td><td>15.52</td><td>3.3%</td>
+    </tr>
+    <tr style="font-weight:bold;">
+      <td style="text-align:left;">SHINY-ICARUS</td>
+      <td style="text-align:left;">DINO-3DRA</td>
+      <td>0.793 ± 0.049</td><td>0.660 ± 0.065</td><td>0.812 ± 0.056</td><td>3.76</td><td>0%</td>
+    </tr>
+  </tbody>
+</table>
+</div>
 
 <div class="row justify-content-center">
   <div class="col-12 mt-2">
